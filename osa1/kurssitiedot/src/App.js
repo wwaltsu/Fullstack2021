@@ -1,23 +1,32 @@
 import React from "react";
 
+const App = () => {
+  const course = "Half Stack Application devolopment";
+  const part1 = {
+    nimi: "Reactin perusteet ",
+    tehtävät: 10,
+  };
+  const part2 = {
+    nimi: "Propsien käyttö datan siirrossa ",
+    tehtävät: 7,
+  };
+  const part3 = {
+    nimi: "Komponentin tila ",
+    tehtävät: 14,
+  };
 
-const Hello = (props) => {
   return (
     <div>
-      <p>
-        Moi sinun nimesi on {props.name} ja olet {props.age} vuotta vanha  
-      </p>
+      <h1>{course}</h1>
+      <div>
+        Osiot
+        <p> {part1.nimi} tehtäviä {part1.tehtävät}</p>
+        <p> {part2.nimi} tehtäviä  {part2.tehtävät}</p>
+        <p> {part3.nimi} tehtäviä {part3.tehtävät}</p>
+        <p>Yhteensä tehtäviä {part1.tehtävät + part2.tehtävät + part3.tehtävät}</p>
+      </div>
     </div>
-  )
-}
-
-const App = () => {
-  return (
-  <div>
-    <Hello name='Waltsu' age='12'/>
-    <Hello name='Mikael' age='11'/>
-  </div>
-  )
-}
+  );
+};
 
 export default App;
