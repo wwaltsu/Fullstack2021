@@ -23,15 +23,11 @@ const App = () => {
   return (
     <div>
       <h1>{course.name}</h1>
-      {course.parts.map((osat) => {
-        return (
-          <p>
-            {osat.name} {osat.exercises}
-          </p>
-        );
-      })}
+      {course.parts.map((osat) =>  <p> {osat.name} {osat.exercises} </p> )}
+      
       Tehtäviä yhteensä {course.parts.reduce((sum, osat) => sum + osat.exercises, 0)}
-      {/*
+      
+      {/* hyödyntäen funktiota
       <p>
         Tehtäviä yhteensä {osat.reduce(function(sum,osat) {
           return sum + osat.tehtävät
@@ -39,6 +35,7 @@ const App = () => {
         }
       </p>
       */}
+
     </div>
   );
 };
