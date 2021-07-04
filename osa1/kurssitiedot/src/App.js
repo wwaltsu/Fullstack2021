@@ -6,14 +6,14 @@ const App = () => {
   const osa1 = 'Reaktin perusteet'
   const harjoitukset1 = 10
   const osa2 = 'Propsien käyttö datan siirtämiseen'
-  const harjoitukset = 7
+  const harjoitukset2 = 7
   const osa3 = 'Komponentin tila'
   const harjoitukset3 = 14
 
   const Header = (props) => {
     return(
       <div>
-        {props.kurssi}
+        <h1>{props.kurssi}</h1>
       </div>
     )
   }
@@ -21,9 +21,9 @@ const App = () => {
   const Content = (props) => {
     return (
       <div>
-        <p>{props.osa1}</p>
-        <p>{props.osa2}</p>
-        <p>{props.osa3}</p>
+        <p>Osa 1: {props.osa1}</p>
+        <p>Osa 2: {props.osa2}</p>
+        <p>Osa 3: {props.osa3}</p>
       </div>
     )
   }
@@ -31,7 +31,7 @@ const App = () => {
   const Total = (props) => {
     return (
       <div>
-        {props.yhteensä}
+        Tehtäviä on yhteensä {props.yhteensä}
       </div>
     )
   }
@@ -47,6 +47,8 @@ const App = () => {
     osa2={osa2} 
     osa3={osa3}
     />
+    
+    <Total yhteensä={harjoitukset1+harjoitukset2+harjoitukset3}/>
   </div>
   )
 };
