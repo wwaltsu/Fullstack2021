@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
-const Statistics = ({ average, positive, all }) => {
+const StatisticsLine = ({ text,value }) => {
   return (
     <div>
-      <p >Keskiarvo {average}</p>
-      <p> Positiivinen {positive}</p>
-      <p> Kaikki {all}</p>
+     <p>{text} {value}</p>
     </div>
   );
 };
@@ -57,15 +55,15 @@ const App = () => {
       <Button handleClick={handleGoodClick} text="Hyvä" />
       <Button handleClick={handlNeutralClick} text="Neutraali" />
       <Button handleClick={handleBadClick} text="Huono" />
-      <h3>statistics</h3>
-      <p>Hyvä : {good} </p>
-      <p>Neutraali : {neutral}</p>
-      <p>Huono : {bad}</p>
-      <Statistics
-        average={(good + neutral + bad) / allClicks}
-        positive={good / allClicks}
-        all={allClicks}
-      />
+      <StatisticsLine text='hyvä' value={good}/>
+      <StatisticsLine text='keskiverto' value={neutral}/>
+      <StatisticsLine text='huono' value={bad}/>
+      <h3>Statistics</h3>
+      <StatisticsLine text='palautteiden määrä' value={allClicks}/>
+      <StatisticsLine text='keskiarvo' value={(good+bad)/allClicks}/>
+      <StatisticsLine text='positiivisa'value={(good/allClicks)}/>
+      
+      
     </div>
   );
 };
