@@ -2,24 +2,11 @@ import React, { useState } from "react";
 
 const Button = ({ text, handleClick }) => {
   return (
-    <div>
+    <>
       <button onClick={handleClick}> {text}</button>
-    </div>
+    </>
   );
 };
-
-/*
-  <div>
-    <p> {anecdotes[selected]} </p>
-    <button
-    onClick={() => setSelected(Math.floor(Math.random() * 7))}
-    >
-    {console.log(selected)}
-    Seuraava anekdootti
-    </button>
-  </div>
-*/
-
 
 
 const App = () => {
@@ -34,14 +21,36 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-  const random = () => setSelected(Math.floor(Math.random() * 7))
+
+  const initialVotes = Array(anecdotes.length).fill(0);
+  console.log(initialVotes)
+  const [votes, setVotes] = useState(initialVotes);
+  const mostVoted = votes.indexOf(Math.max(...votes));
+
+  const nextAnectode = () =>
+    setSelected(Math.floor(Math.random() * anecdotes.length));
+
+  const voting = () => {
+    const voteSelected = [...votes];
+    voteSelected[selected]++
+    setVotes(voteSelected);
+  };
+
   return (
     <div>
+
+      <h1>Päivän anekdootti</h1>
+
       <p>{anecdotes[selected]}</p>
-     <Button
-     handleClick={random}
-     text='Seuraava anekdoottisi'
-     />
+
+      <Button handleClick={voting} text="Äänestä" />
+
+      <Button handleClick={nextAnectode} text="Seuraava anekdoottisi" />
+
+      <h1>Äänestetyin anekdootti</h1>
+
+      <p>{anecdotes[mostVoted]}</p>
+
     </div>
   );
 };
