@@ -10,17 +10,22 @@ const App = () => {
       number: "062343212",
     },
   ]);
-
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [filter, setFilter] = useState("");
 
+  const filteredPersons = persons.filter((p) =>
+    p.name.toLowerCase().includes(filter.toLowerCase())
+  );
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(name);
+    if (persons.find((p) => p.name === name)) {
+      return alert(name + " on jo luettelossa!");
+    }
     addPerson(name, number);
-    setName('')
-    setNumber('')
+    setName("");
+    setNumber("");
   };
 
   const addPerson = (name, number) => {
@@ -29,9 +34,9 @@ const App = () => {
 
   return (
     <div>
-       <h2>Puhelinluettelo</h2>
+      <h2>Puhelinluettelo</h2>
       filter shown with:
-      <Filter filter={filter} setFilter={setFilter}/>
+      <Filter filter={filter} setFilter={setFilter} />
       <h2>Lisää uusi</h2>
       <PersonForm
         name={name}
@@ -41,7 +46,7 @@ const App = () => {
         setNumber={setNumber}
       />
       <h2>Numbers</h2>
-      <Persons persons={persons} filter={filter} />
+      <Persons filteredPersons={filteredPersons} />
       ...
     </div>
   );
