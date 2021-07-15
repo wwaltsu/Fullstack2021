@@ -1,11 +1,11 @@
 import React from "react";
 
-const Filter = ({ filteredPersons }) => {
+const Filter = ({ persons, filteredPersons }) => {
   console.log(filteredPersons);
   return (
     <div>
       {/* mapataan henkilöt array of objects [{ name: "Arto hellas" }] */}
-      {filteredPersons.map((person) => (
+      {persons.map((person) => (
         <p key={person.name}>
           {" "}
           {person.name} {person.number}{" "}
