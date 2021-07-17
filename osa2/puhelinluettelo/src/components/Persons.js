@@ -1,18 +1,18 @@
 import React from "react";
-
-const Filter = ({ persons, filteredPersons }) => {
-  console.log(filteredPersons);
+const Persons = ({ persons, handleDelete }) => {
   return (
     <div>
-      {/* mapataan henkilöt array of objects [{ name: "Arto hellas" }] */}
       {persons.map((person) => (
         <p key={person.name}>
           {" "}
-          {person.name} {person.number}{" "}
+          {person.name} {person.number}
+          <button className="button" onClick={() => handleDelete(person.id)}>
+            Delete
+          </button>
         </p>
       ))}
     </div>
   );
 };
 
-export default Filter;
+export default Persons;
