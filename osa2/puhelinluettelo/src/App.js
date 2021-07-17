@@ -32,31 +32,29 @@ const App = () => {
     });
   }, []);
 
-  const alreadyExists = persons.some((person) => person.name === name);
-
   const createPerson = (event) => {
-    const person = persons.find((p) => p.name === name);
-    const changePersonNumber = { ...person, number };
-    const { id } = person;
-    console.log("id", id);
     event.preventDefault();
+    const updatePerson = persons.find((p) => p.name === name);
+    const changePersonNumber = { ...updatePerson, number };
+
     const newObject = {
       name,
       number,
     };
     if (
-      alreadyExists &&
+      updatePerson &&
       window.confirm(
         "Henkilö " + name + " on jo luettelossa päivitetäänkö numero?"
       )
     ) {
-      personService.update(id, changePersonNumber).then((returnedPerson) => {
+      const { id } = updatePerson;
+      personService.update(id, changePersonNumber).then((response) => {
         setPersons(
-          persons.map((person) => (person.id !== id ? person : returnedPerson))
+          persons.map((person) => (person.id !== id ? updatePerson : response))
         );
       });
     }
-    if (!alreadyExists) {
+    if (!updatePerson) {
       personService.create(newObject).then((response) => {
         console.log("res ", response);
         setPersons(persons.concat(response));
